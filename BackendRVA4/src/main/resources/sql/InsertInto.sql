@@ -7,6 +7,9 @@ VALUES(nextval('dobavljac_seq'), 'Fruit D.O.O.', 'Justina Popovica 3, 11080 Zemu
 INSERT INTO "dobavljac"("id", "naziv", "adresa", "kontakt")
 VALUES(nextval('dobavljac_seq'), 'CENTROPROIZVOD', 'DOBANOVACKI PUT B.B. 11271, SURCIN', '+381 11 3773 600');
 
+INSERT INTO "dobavljac"("id", "naziv", "adresa", "kontakt")
+VALUES(-100, 'Naziv TEST', 'Adresa TEST', 'Kontakt TEST');
+
 INSERT INTO "artikl"("id", "naziv", "proizvodjac")
 VALUES(nextval('artikl_seq'), 'Moja Kravica sveže mleko 2,8% MM 1l', 'AD Imlek');
 INSERT INTO "artikl"("id", "naziv", "proizvodjac")
@@ -29,11 +32,14 @@ INSERT INTO "artikl"("id", "naziv", "proizvodjac")
 VALUES(nextval('artikl_seq'), 'Kajsija', 'Fruit D.O.O.');
 
 INSERT INTO "artikl"("id", "naziv", "proizvodjac")
-VALUES(nextval('artikl_seq'), 'Šlag pena', 'CENTROPROIZ?VOD');
+VALUES(nextval('artikl_seq'), 'Šlag pena', 'CENTROPROIZVOD');
 INSERT INTO "artikl"("id", "naziv", "proizvodjac")
-VALUES(nextval('artikl_seq'), 'Puding vanila', 'CENTROPROIZ?VOD');
+VALUES(nextval('artikl_seq'), 'Puding vanila', 'CENTROPROIZVOD');
 INSERT INTO "artikl"("id", "naziv", "proizvodjac")
-VALUES(nextval('artikl_seq'), 'Puding jagoda', 'CENTROPROIZ?VOD');
+VALUES(nextval('artikl_seq'), 'Puding jagoda', 'CENTROPROIZVOD');
+
+INSERT INTO "artikl"("id", "naziv", "proizvodjac")
+VALUES(-100, 'Naziv TEST', 'Proizvodjac TEST');
 
 INSERT INTO "porudzbina"("id", "datum", "dobavljac", "isporuceno", "iznos", "placeno")
 VALUES (nextval('porudzbina_seq'), to_date('01.03.2017.', 'dd.mm.yyyy.'), 1, to_date('01.03.2017.', 'dd.mm.yyyy.'), 0, true);

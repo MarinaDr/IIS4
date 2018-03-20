@@ -41,3 +41,6 @@ where p.id = sp.porudzbina and sp.artikl = a.id and a.naziv like 'Puding jagoda'
 select p.id as "ID porudžbine", to_char(p.datum, 'dd.mm.yyyy') as "Datum kreiranja", p.isporuceno as "Datum isporuke", p.placeno as "Plaćeno", a.naziv as "Artikl", sp.kolicina as "Količina", sp.jedinica_mere as "JM", d.naziv as "Dobavljač"
 from  porudzbina p, dobavljac d, stavka_porudzbine sp, artikl a
 where p.id = sp.porudzbina and sp.artikl = a.id and p.dobavljac = d.id and p.datum = to_date('18.02.2017', 'dd.mm.yyyy');
+
+RESET max_connections;
+SHOW max_connections;
