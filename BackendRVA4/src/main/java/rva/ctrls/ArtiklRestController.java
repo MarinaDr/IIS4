@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import rva.jpa.Artikl;
 import rva.reps.ArtiklRepository;
 @RestController
+@Api(tags = {"Artikl CRUD operacije"})
 public class ArtiklRestController {
 	@Autowired
 	private ArtiklRepository artiklRepository;
@@ -24,21 +27,25 @@ public class ArtiklRestController {
 	private JdbcTemplate jdbcTemplate;
 	
 	@GetMapping("artikl")
+	@ApiOperation(value = "Vraća kolekciju svih artikala iz baze podataka")
 	public Collection<Artikl> getArtikli(){
 		return artiklRepository.findAll();
 	}
 	
 	@GetMapping("artiklId/{id}")
+	@ApiOperation(value = "Vraća artikl iz baze podataka čiji je id vrednost prosleđena kao path varijabla")
 	public Artikl getArtikl(@PathVariable("id") Integer id){
 		return artiklRepository.getOne(id);
 	}
 	
 	@GetMapping("artiklNaziv/{naziv}")
+	@ApiOperation(value = "Vraća kolekciju svih artikala iz baze podataka koji u nazivu sadrže string prosleđen kao path varijabla")
 	public Collection<Artikl> getArtiklByName(@PathVariable("naziv") String naziv){
 		return artiklRepository.findByNazivContainingIgnoreCase(naziv);
 	}
 	
 	@DeleteMapping("artiklId/{id}")
+	@ApiOperation(value = "Briše artikl iz baze podataka čiji je id vrednost prosleđena kao path varijabla")
 	public ResponseEntity<HttpStatus> deleteArtikl(@PathVariable("id") Integer id){
 		if(artiklRepository.existsById(id)){
 			artiklRepository.deleteById(id);
@@ -51,6 +58,7 @@ public class ArtiklRestController {
 	
 	// insert
 	@PostMapping("artikl")
+	@ApiOperation(value = "Upisuje artikl u bazu podataka")
 	public ResponseEntity<HttpStatus> insertArtikl(@RequestBody Artikl artikl){
 		if(artiklRepository.existsById(artikl.getId()))
 			return new ResponseEntity<HttpStatus>(HttpStatus.CONFLICT);
@@ -59,6 +67,7 @@ public class ArtiklRestController {
 	}
 	// update
 	@PutMapping("artikl")
+	@ApiOperation(value = "Modifikuje postojeći artikl u bazi podataka")
 	public ResponseEntity<HttpStatus> updateArtikl(@RequestBody Artikl artikl){
 		if(artiklRepository.existsById(artikl.getId())){
 			artiklRepository.save(artikl);
